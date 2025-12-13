@@ -1,17 +1,17 @@
 {
   "publisher": "aayushsah98488",
   "name": "Open8Todo",
-"displayName": "TODO Sidebar",
+  "displayName": "TODO Sidebar",
   "description": "Sidebar TODO manager for VsCode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icon": "media/icon.jpg",
   "engines": {
     "vscode": "^1.85.0"
   },
   "repository": {
-  "type": "git",
-  "url": "https://github.com/Aayushsah6969/Vs-Code-TODO-Extension"
-},
+    "type": "git",
+    "url": "https://github.com/Aayushsah6969/Vs-Code-TODO-Extension"
+  },
   "categories": [
     "Other"
   ],
@@ -38,8 +38,7 @@
         }
       ]
     }
-  }
-,
+  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
