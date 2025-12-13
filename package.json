@@ -1,0 +1,83 @@
+{
+  "name": "todo-sidebar",
+"displayName": "TODO Sidebar",
+  "description": "Sidebar TODO manager for VsCode",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+  "onView:todoView",
+  "onCommand:todoSidebar.addTodo"
+],
+
+  "main": "./out/extension.js",
+  "contributes": {
+  "viewsContainers": {
+    "activitybar": [
+      {
+        "id": "todoSidebar",
+        "title": "TODOs",
+        "icon": "media/todo.svg"
+      }
+    ]
+  },
+  "views": {
+    "todoSidebar": [
+      {
+        "id": "todoView",
+        "name": "My TODOs"
+      }
+    ]
+  },
+"commands": [
+ {
+  "command": "todoSidebar.addTodo",
+  "title": "TODO: Add Item"
+},
+{
+  "command": "todoSidebar.deleteTodo",
+  "title": "TODO: Delete Item"
+}
+
+],
+"menus": {
+  "view/item/context": [
+    {
+      "command": "todoSidebar.deleteTodo",
+      "when": "view == todoView && viewItem == todoItem",
+      "group": "inline"
+    }
+  ]
+},
+"viewsWelcome": [
+  {
+    "view": "todoView",
+    "contents": "No TODOs yet.\n\n[➕ Add TODO](command:todoSidebar.addTodo)"
+  }
+]
+
+}
+,
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.107.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "typescript-eslint": "^8.48.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
