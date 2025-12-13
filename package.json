@@ -3,7 +3,7 @@
   "name": "Open8Todo",
   "displayName": "TODO Sidebar",
   "description": "Sidebar TODO manager for VsCode",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "icon": "media/icon.jpg",
   "engines": {
     "vscode": "^1.85.0"
