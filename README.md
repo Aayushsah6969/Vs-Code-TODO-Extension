@@ -63,8 +63,8 @@ No Command Palette required.
 ## 🧪 Development Setup
 
 ```bash
-git clone https://github.com/<your-username>/todo-sidebar.git
-cd todo-sidebar
+git clone https://github.com/Aayushsah6969/Vs-Code-TODO-Extension.git
+cd Vs-Code-TODO-Extension
 npm install
 
 
