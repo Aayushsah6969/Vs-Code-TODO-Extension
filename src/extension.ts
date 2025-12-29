@@ -20,6 +20,9 @@ export function activate(context: vscode.ExtensionContext) {
 			provider
 		)
 	);
+
+	// Initialize the badge with the current todo count
+	provider.updateBadge();
 }
 
 /**
@@ -99,6 +102,7 @@ class TodoWebviewViewProvider implements vscode.WebviewViewProvider {
 		this.todos.push(newTodo);
 		this.save();
 		this.sendTodosToWebview();
+		this.updateBadge();
 	}
 
 	/**
@@ -109,6 +113,7 @@ class TodoWebviewViewProvider implements vscode.WebviewViewProvider {
 		if (todo) {
 			todo.completed = !todo.completed;
 			this.save();
+			this.updateBadge();
 			this.sendTodosToWebview();
 		}
 	}
@@ -118,6 +123,7 @@ class TodoWebviewViewProvider implements vscode.WebviewViewProvider {
 	 */
 	private deleteTodo(id: string): void {
 		this.todos = this.todos.filter(t => t.id !== id);
+		this.updateBadge();
 		this.save();
 		this.sendTodosToWebview();
 	}
@@ -138,6 +144,29 @@ class TodoWebviewViewProvider implements vscode.WebviewViewProvider {
 				command: 'updateTodos',
 				todos: this.todos
 			});
+		}
+	}
+
+	/**
+	 * Update the Activity Bar badge with the count of incomplete TODOs
+	 * Badge displays number of incomplete todos with an orange background
+	 * Clears badge when count is 0
+	 */
+	public updateBadge(): void {
+		if (this._view) {
+			// Calculate the number of incomplete todos
+			const incompleteTodos = this.todos.filter(todo => !todo.completed).length;
+
+			if (incompleteTodos > 0) {
+				// Set badge with count and orange background
+				this._view.badge = {
+					value: incompleteTodos,
+					tooltip: `${incompleteTodos} incomplete TODO${incompleteTodos === 1 ? '' : 's'}`
+				};
+			} else {
+				// Clear the badge when no incomplete todos
+				this._view.badge = undefined;
+			}
 		}
 	}
 

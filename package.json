@@ -37,7 +37,18 @@
           "type": "webview"
         }
       ]
-    }
+    },
+    "colors": [
+      {
+        "id": "todoSidebar.badge.background",
+        "description": "Badge background color for TODO count",
+        "defaults": {
+          "dark": "#FF9800",
+          "light": "#FF9800",
+          "highContrast": "#FF9800"
+        }
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
